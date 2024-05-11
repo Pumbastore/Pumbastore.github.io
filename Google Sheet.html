@@ -104,36 +104,6 @@
     
 </head>
 <body>
-  <script>
-jQuery(document).ready(function () {
-  // Function to populate textarea with cart items
-  function displayCartData() {
-    var cartText = "Cart Items:\n";
-
-    // Extract items from .simpleCart_items
-    var items = $('.simpleCart_items').text();
-    // Split items by new line
-    var itemArray = items.split("\n");
-
-    // Loop through each item
-    itemArray.forEach(function(item) {
-      // Append item to cartText
-      cartText += item.trim() + "\n";
-    });
-
-    // Set the formatted cart data in the textarea
-    $('#cartData').val(cartText);
-  }
-
-  // Call the function to display cart data when the page loads
-  displayCartData();
-
-  $('.showCart').on('click', function () {
-    $('#cartPopover').slideToggle('fast');
-    $('.showCart span.dropdown').toggleClass('fa-chevron-circle-down fa-chevron-circle-up');
-  });
-});
-</script>
   
   <section class="hero is-primary is-bold">
     <div class="hero-body">
@@ -156,6 +126,7 @@ jQuery(document).ready(function () {
                 
                 <!-- Order area -->
                 <textarea id="cartData" class="simpleCart_items" name="Items" readonly>
+                  
               </textarea>
                 
                 
@@ -438,7 +409,36 @@ jQuery(document).ready(function () {
    
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script>
+jQuery(document).ready(function () {
+  // Function to populate textarea with cart items
+  function displayCartData() {
+    var cartText = "Cart Items:\n";
 
+    // Extract items from .simpleCart_items
+    var items = $('.simpleCart_items').text();
+    // Split items by new line
+    var itemArray = items.split("\n");
+
+    // Loop through each item
+    itemArray.forEach(function(item) {
+      // Append item to cartText
+      cartText += item.trim() + "\n";
+    });
+
+    // Set the formatted cart data in the textarea
+    $('#cartData').val(cartText);
+  }
+
+  // Call the function to display cart data when the page loads
+  displayCartData();
+
+  $('.showCart').on('click', function () {
+    $('#cartPopover').slideToggle('fast');
+    $('.showCart span.dropdown').toggleClass('fa-chevron-circle-down fa-chevron-circle-up');
+  });
+});
+</script>
  
 <script>    
 jQuery(document).ready(function () {
