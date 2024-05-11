@@ -410,32 +410,32 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-jQuery(document).ready(function () {
-  // Function to populate textarea with cart items
+$(document).ready(function() {
+  // Function to populate cart data
   function displayCartData() {
-    var cartText = "Cart Items:\n";
+      var cartContent = "";
 
-    // Extract items from .simpleCart_items
-    var items = $('.simpleCart_items').text();
-    // Split items by new line
-    var itemArray = items.split("\n");
+      // Iterate over each row in the table
+      $('.simpleCart_items tbody tr').each(function(index, row) {
+          var itemName = $(row).find('.item-name').text();
+          var itemPrice = $(row).find('.item-price').text();
+          var itemQuantity = $(row).find('.item-quantity').text();
+          // Format the item information
+          var itemInfo = itemName + ' - ' + itemPrice + ' x ' + itemQuantity;
+          // Append the formatted item information to the cart content
+          cartContent += itemInfo + "<br>";
+      });
 
-    // Loop through each item
-    itemArray.forEach(function(item) {
-      // Append item to cartText
-      cartText += item.trim() + "\n";
-    });
-
-    // Set the formatted cart data in the textarea
-    $('#cartData').val(cartText);
+      // Set the formatted cart content in the div
+      $('#cartData').html(cartContent);
   }
 
   // Call the function to display cart data when the page loads
   displayCartData();
 
   $('.showCart').on('click', function () {
-    $('#cartPopover').slideToggle('fast');
-    $('.showCart span.dropdown').toggleClass('fa-chevron-circle-down fa-chevron-circle-up');
+      $('#cartPopover').slideToggle('fast');
+      $('.showCart span.dropdown').toggleClass('fa-chevron-circle-down fa-chevron-circle-up');
   });
 });
 </script>
